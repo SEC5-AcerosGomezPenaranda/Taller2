@@ -8,16 +8,22 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import uniandes.dpoo.taller0.modelo.Atleta;
+import uniandes.dpoo.taller0.procesamiento.CalculadoraEstadisticas;
 
 import java.io.BufferedReader;
 
 public class LoaderComidas {
+	
+	
 
 	public static Restaurante cargarArchivo() throws FileNotFoundException, IOException{
-		Map<String, Combo> combo = new HashMap<>();
-		Map<String, Ingrediente> ingrediente = new HashMap<>();
-		Map<String, ProductoMenu> productoNormal = new HashMap<>();
-		Map<String, Bebida> bebida = new HashMap<>();
+		Map<String, Combo> combos = new HashMap<>();
+		Map<String, Ingrediente> ingredientes = new HashMap<>();
+		Map<String, Producto> productosNormales = new HashMap<>();
+		Map<String, Bebida> bebidas = new HashMap<>();
+		
+		
 		
 		//Carga del archivo "menu.txt"
 		BufferedReader br = new BufferedReader(new FileReader("data/menu.txt"));
@@ -30,10 +36,10 @@ public class LoaderComidas {
 			int precio = Integer.parseInt(partes[1]);
 			int caloria = Integer.parseInt(partes[2]);
 			
-			ProductoMenu producto = productoNormal.get(nombreProducto);
+			ProductoMenu producto = productosNormales.get(nombreProducto);
 			if (producto == null) {
 				producto = new ProductoMenu(nombreProducto, precio, caloria);
-				productoNormal.put(nombreProducto, producto);
+				productosNormales.put(nombreProducto, producto);
 			}
 			lineaMenu = br.readLine();
 		
@@ -52,12 +58,14 @@ public class LoaderComidas {
 			int precio = Integer.parseInt(partes[1]);
 			int caloria = Integer.parseInt(partes[2]);
 			
-			Bebida bebidita = bebida.get(nombreBeb);
+			Bebida bebidita = bebidas.get(nombreBeb);
 			if (bebidita == null) {
 				bebidita = new Bebida(nombreBeb, precio, caloria);
-				bebida.put(nombreBeb, bebidita);
+				bebidas.put(nombreBeb, bebidita);
 			}
 			lineaBeb = br2.readLine();
+			
+			
 		
 		}
 		br2.close();
@@ -74,10 +82,10 @@ public class LoaderComidas {
 			int precio = Integer.parseInt(partes[1]);
 			int caloria = Integer.parseInt(partes[2]);
 			
-			Ingrediente ingre = ingrediente.get(nombreIng);
+			Ingrediente ingre = ingredientes.get(nombreIng);
 			if (ingre == null) {
 				ingre = new Ingrediente(nombreIng, precio, caloria);
-				ingrediente.put(nombreIng, ingre);
+				ingredientes.put(nombreIng, ingre);
 			}
 			lineaIng = br3.readLine();
 		
@@ -101,14 +109,24 @@ public class LoaderComidas {
 			String papitas = partes[3];
 			String beb = partes[4];
 			
-			Combo combi = combo.get(nombreCom);
+			
+			
+			Combo combi = combos.get(nombreCom);
 			if (combi == null) {
 				combi = new Combo(nombreCom, desc);
-				combo.put(nombreCom, combi);
+				combos.put(nombreCom, combi);
 			}
 			lineaCom = br4.readLine();
 		
 		}
+
+		
 		br4.close();
+		Restaurante restaurante = new Restaurante(combos, ingredientes, productosNormales, bebidas);
+		return restaurante;
+		
 	}	
+	
+
+	
 }
