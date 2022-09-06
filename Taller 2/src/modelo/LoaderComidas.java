@@ -8,8 +8,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import uniandes.dpoo.taller0.modelo.Atleta;
-import uniandes.dpoo.taller0.procesamiento.CalculadoraEstadisticas;
 
 import java.io.BufferedReader;
 
@@ -20,7 +18,7 @@ public class LoaderComidas {
 	public static Restaurante cargarArchivo() throws FileNotFoundException, IOException{
 		Map<String, Combo> combos = new HashMap<>();
 		Map<String, Ingrediente> ingredientes = new HashMap<>();
-		Map<String, Producto> productosNormales = new HashMap<>();
+		Map<String, ProductoMenu> productosNormales = new HashMap<>();
 		Map<String, Bebida> bebidas = new HashMap<>();
 		
 		
@@ -53,6 +51,7 @@ public class LoaderComidas {
 		
 		lineaBeb = br2.readLine();
 		while (lineaBeb != null) {
+			
 			String[] partes = lineaBeb.split(";");
 			String nombreBeb = partes[0];
 			int precio = Integer.parseInt(partes[1]);
@@ -113,7 +112,7 @@ public class LoaderComidas {
 			
 			Combo combi = combos.get(nombreCom);
 			if (combi == null) {
-				combi = new Combo(nombreCom, desc);
+				combi = new Combo(nombreCom, desc, hamburguesa, papitas, beb);
 				combos.put(nombreCom, combi);
 			}
 			lineaCom = br4.readLine();
@@ -126,7 +125,6 @@ public class LoaderComidas {
 		return restaurante;
 		
 	}	
-	
+	   
 
-	
 }

@@ -10,7 +10,7 @@ public class Combo {
 	
 	private ArrayList<Object> producto;
 	
-	public Combo(String elNombre, double elDescuento) {
+	public Combo(String elNombre, double elDescuento, String hamburguesa, String papitas, String bebida) {
 		this.nombre = elNombre;
 		this.descuento = elDescuento;
 		
@@ -20,12 +20,18 @@ public class Combo {
 	public String darNombre() {
 		return nombre;
 	}
-	
-	
-	public void agregarItemAcombo(ProductoMenu hamburguesa, ProductoMenu papitas, Bebida bebida){
-		this.producto.add(hamburguesa);
-		this.producto.add(papitas);
-		this.producto.add(bebida);
+	public double darDescuento() {
+		
+		return descuento;
 	}
+		
+	
+	/*"public void agregarItemAcombo(ProductoMenu hamburguesa, ProductoMenu papitas, Bebida bebida){
+	"	this.producto.add(hamburguesa);
+	"	this.producto.add(papitas);
+	"	this.producto.add(bebida);
+	}*/
+
+
 }	
 

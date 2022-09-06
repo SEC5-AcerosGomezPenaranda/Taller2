@@ -13,7 +13,7 @@ public class Restaurante {
 	
 	private List<Ingrediente> ingredientes;
 
-	private List<Producto> productos;
+	private List<ProductoMenu> productos;
 	
 	private List<Bebida> bebidas;
 	
@@ -31,12 +31,13 @@ public class Restaurante {
 	 *                los países y los valores son los países.
 	 * @param eventos Una lista con los eventos.
 	 */
-	public Restaurante(Map<String, Combo> combos, Map<String, Ingrediente> ingredientes, Map<String, Producto> productos, Map<String, Bebida> bebidas)
+	public Restaurante(Map<String, Combo> combos, Map<String, Ingrediente> ingredientes, Map<String, ProductoMenu> productos, Map<String, Bebida> bebidas)
 	{
 		this.combos = new ArrayList<Combo>(combos.values());
 		this.ingredientes = new ArrayList<Ingrediente>(ingredientes.values());
-		this.productos = new ArrayList<Producto>(productos.values());
+		this.productos = new ArrayList<ProductoMenu>(productos.values());
 		this.bebidas = new ArrayList<Bebida>(bebidas.values());
+		System.out.print(combos.get("combo corral"));
 	}
 	
 	/**
@@ -50,11 +51,49 @@ public class Restaurante {
 		Bebida laBebida = null;
 		for (int i = 0; i < bebidas.size() && laBebida == null; i++)
 		{
-			if (bebidas.get(i).darNombre().equals(nombrebebida))
+			if (bebidas.get(i).darNombre().equals(nombrebebida)) {
+		
 				laBebida = bebidas.get(i);
+			}
 		}
 		return laBebida;
 	}
 
-
+		
+	/** Mostrar menú**/
+	public void mostrarCombos() {
+		System.out.println("\n");
+		System.out.println("ESTOS SON LOS COMBOS: \n");
+		for (int i = 0; i < combos.size(); i++)
+		{
+			int x = i+1;
+			System.out.println((x)+ ". "+ combos.get(i).darNombre());
+			
+		}
+		
+	}
+	public void mostrarProductos() {
+		System.out.println("\n");
+		System.out.println("ESTOS SON LOS PRODUCTOS: \n");
+		for (int i = 0; i < productos.size(); i++)
+		{
+			int x = i+1;
+			System.out.println((x)+ ". "+ productos.get(i).darNombre() + " PRECIO: "+ productos.get(i).darPrecio() + " CAL: "+ productos.get(i).darCalorias() );
+			
+		}
+		
+	}
+	public void mostrarBebidas() {
+		System.out.println("\n");
+		System.out.println("ESTOS SON LAS BEBIDAS: \n");
+		for (int i = 0; i < bebidas.size(); i++)
+		{
+			int x = i+1;
+			System.out.println((x)+ ". "+ bebidas.get(i).darNombre() + " PRECIO: "+ bebidas.get(i).darPrecio() + " CAL: "+ bebidas.get(i).darCalorias() );
+			
+		}
+		
+	}
+	
 }
+
